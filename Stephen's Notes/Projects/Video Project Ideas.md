@@ -19,6 +19,7 @@
 - Rubber duck coding copilot
 - Game design
 - Animated diagrams
+- Markdown designer
 - 
 ### Touch Grass Projects
 - Smart Mirror
