@@ -216,7 +216,60 @@ IEEE has a committee called 802 which defines frames, speeds, distances, and typ
 ![[802 IEEE standards.jpg]]
 
 ## Chapter 3
+The chain of ethernet development was:
+bus topology @ 3Mbps -> DIX Ethernet @ 10Mbps -> IEEE for additional standards.
 
+| Standard | Description                                  |
+| -------- | -------------------------------------------- |
+| 802.3i   | 10Mbps Ethernet using twisted pair           |
+| 802.3ab  | Gbps over twisted pair                       |
+| 802.3by  | 25Gbit over fiber                            |
+| 802.3cm  | 400Gbit over MMF                             |
+| 802.3cu  | 100Gbit-400Gbit over SMF using 100Gbit lanes |
+CSMA/CD is the process of finding out what goes where with collision detection.
+![[CSMACD.webp]]
+
+Thankfully frames prevent the monopolization of the bus and makes transmitting data more efficient.
+
+![[Ethernet Frame.jpg]]
+
+The preamble is a sequence of 0s and 1s in the form of 1010101 which gives a NIC time to recognize it is a frame. Then it has the destination IP and SRC address. The type differentiates between IPv4 and IPv6. The data is the payload of the frame which is padded to make the frame minimum of 64bytes long. 
+
+FCS contains a cyclical redundancy check and attaches the result at the end. This is meant to check the accuracy of the frame and verify if the frame has been tampered with or contains errors. 
+
+Initially the router just sent everything down every other channel but advanced switches can avoid things like this.
+
+### Ethernet Standards
+
+Num Base-XX
+Num-> Refers to the speed in  Mbps
+Base-> Refers to Baseband (cable carries 1 signal)
+XX-> Refers to the cable type. T being twisted pair
+
+#### 10Base-T
+Was the original ethernet signal. 10Mbps via connection to a hub. It used Cat3 UTP cable in doubles with an RJ-45 connector.
+It had 4 pairs of cable but only used 2 pairs for various reasons. 1&2 sent data whereas 3&6 receive data. That said, even with multiple pins they couldn't send and receive data at the same time.  
+
+NICs that can only do one task at once run what's known as half duplex whereas those that can send and receive data at once run full-duplex. 
+
+##### RJ45
+The RJ-45 is known as a crimp which is the process of adding the end onto the UTP wire.
+
+ ![[Pasted image 20251113161555.png]]
+The difference between 568A and 548b is GO, green is first for A and orange is first for B.
+
+##### 10BASE-FL
+10BASE-FL is the fiber based alternative to 10BASE-T. First, 10BASE-FL could go for over 2km which addresses the distance issue. The second strength is the resistance to EMI that twisted pair lacks. It uses 62.5/125um with ST-SC connectors. It also uses single band/half-duplex so it requires 2 fiber runs. 
+
+
+#### Standards Summary
+| Standard  | Speed  | Type     | Distance                | Node-Limit | Topology                  | Cable          |
+| --------- | ------ | -------- | ----------------------- | ---------- | ------------------------- | -------------- |
+| 10BASE-T  | 10Mbps | Baseband | 100m between hub n node | 1024 nodes | Phys-Star logic-Bus       | Cat-3          |
+| 10BASE-FL | 10Mbps | Baseband | 2km from node and hub   |            | Physical-Star Logical-bus | 62.5/125 ST-SC |
+|           |        |          |                         |            |                           |                |
+|           |        |          |                         |            |                           |                |
+|           |        |          |                         |            |                           |                |
 
 ## Relevant Commands
 ```

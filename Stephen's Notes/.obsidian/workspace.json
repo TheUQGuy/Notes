@@ -11,12 +11,14 @@
             "id": "ccab8db79fa7c55a",
             "type": "leaf",
             "state": {
-              "type": "image",
+              "type": "markdown",
               "state": {
-                "file": "Imgs/Markdown Beautifier diagram.png"
+                "file": "Study Buddy/Network+ Notes.md",
+                "mode": "source",
+                "source": false
               },
-              "icon": "lucide-image",
-              "title": "Markdown Beautifier diagram"
+              "icon": "lucide-file",
+              "title": "Network+ Notes"
             }
           }
         ]
@@ -170,23 +172,25 @@
       "bases:Create new base": false
     }
   },
-  "active": "c42c2a6289838e9b",
+  "active": "ccab8db79fa7c55a",
   "lastOpenFiles": [
+    "Pasted image 20251113161555.png",
+    "Imgs/Ethernet Frame.jpg",
+    "Study Buddy/Network+ Notes.md",
+    "Pasted image 20251113153721.png",
+    "CSMACD.webp",
+    "Pasted image 20251113153634.jpg",
+    "Projects/Personal/Homelab.md",
+    "Imgs/Markdown Beautifier diagram.png",
     "Imgs/802 IEEE standards.jpg",
     "Projects/Personal/Markdown Editor.md",
-    "Imgs/Markdown Beautifier diagram.png",
     "Useful websites.md",
     "Personal Diary/In a Year.md",
-    "Study Buddy/Network+ Notes.md",
     "Imgs/Fiber Connectors.webp",
     "Imgs/Fibre Optic cable.jpg",
     "Imgs/Cat-Cable Ratings.png",
     "Pihole.md",
     "Imgs/UTP Cable Types.webp",
-    "Imgs/Twisted Pair Cable.jpg",
-    "Imgs/F-Connector.jpg",
-    "Imgs/Bayonet Connector.jpg",
-    "Imgs/Coax Cable.jpg",
     "Hypervisor.md",
     "NAS.md",
     "Projects/Video Project Ideas.md",
@@ -200,7 +204,6 @@
     "Projects/Retail/Better Inventory.md",
     "Projects/Retail",
     "Projects/Personal",
-    "Projects/Personal/Homelab.md",
     "Imgs",
     "Projects/Personal/Home Server.md",
     "Projects",
