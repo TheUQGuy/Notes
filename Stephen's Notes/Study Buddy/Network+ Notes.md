@@ -114,6 +114,162 @@ Encapsulation is the process of taking data from the Application Layer, and comp
 Decapsulation does the opposite.
 
 ## Chapter 2
+### Network Topologies
+![[Topology Diagram.jpg]]
+#### Bus topology
+A straight line that require terminators at the end of the cable so that the network doesn't fry as the signal  reflects back through the cable otherwise.
+
+#### Ring topology
+Ring topology is where all of the computers interconnect to one another
+
+In both star and ring one cable break destroys the whole network
+
+#### Star topology
+Star topology/hub-and-spoke topology uses a central box as a main connector to the other computers. It offered fault tolerance where if one cable broke the others could continue communication.
+
+It wasn't as successful because it was hard and expensive to rewire the previously existing networks into star ones.
+
+Instead they did a hybridization of star incorporated into the bus and ring topologies. In Ring they put the ring into the switch box and used that. In bus they routed all of the cables through the box but kept the same functionality.
+
+#### Physical Topology
+The physical topology is what the actual wiring looks like (in the hybrid cases the physical topology is the star).
+
+#### Logical Topology
+The logical topology/signal topology is what an electrical diagram would show, in this case it is the bus and ring topologies respectively.
+
+#### Mesh Topology
+A mesh topology is where each node is connected to at least 2 other nodes. Partially meshed means that at least 2 nodes have redundant connections. In a fully meshed system, every node connects to every other one
+
+![[Mesh topology differences.png]]
+
+
+### Network Technologies
+Network technology is a practical application of a topology that gets data from one PC to another.
+
+#### Network Cabling
+The most common form of cabling is called copper cabling which are coaxial and twisted pair cables.
+
+##### Coaxial
+![[Coax Cable.jpg]]
+
+Coaxial cable is copper conductor wire surrounded by a braided shield. It is called coaxial because the wire and the mesh share an axis (co-axis). This mesh over wire, shields the transmission from interference. Many devices generate magnetic fields which leads to electrical currents hitting the wire. Extra current is called electromagnetic interference which can be interpreted as a signal.
+
+Old bus topologies use bayonet coax connectors (BNC)
+![[Bayonet Connector.jpg]]
+
+Whereas now they use F-Connectors which connect ISP from a cable modem![[F-Connector.jpg]]
+In TV they use RG-59 and RG6 graded cabling which are rated at 75 Ohms
+
+##### Twisted pair
+Twisted pair are twin axial cables that have 2 copper cables wrapped around a shield. It is a short version of fiber and is much cheaper. This fiber substitute is also known as direct attached cable (DAC). 
+![[Twisted Pair Cable.jpg]]
+
+The twisted pairs reduce crosstalk (talk between pairs) thanks to the jackets. 
+
+Shielded twisted pair (STP) are shielded to prevent EMI risk. They are differentiated on which part of the cable is shielded. 
+
+![[UTP Cable Types.webp]]
+
+Unshielded twisted pair (UTP) is less resistant to EMI but is much cheaper than the STP variants.
+
+#### Cat Ratings
+![[Cat-Cable Ratings.png]]
+
+Regulating CAT ratings is the International Org of Standardization (ISO) and American National Standards Institute (ANSI). 
+
+Bandwidth is amount of data that goes through the cable per second
+
+Devs have implemented bandwidth-efficient encoding schemes which means squeezing more-bits into the cable if possible.
+
+Cat5e can handle a throughput of 1 Gbps even though its rated to handle 100Mhz. Most use Cat6 as of now. 
+
+Old landlines plug with a registered-jack (RJ) connector. Telephones used RJ-11 connectors whereaas now we use 8 position 8-contact (8P8C) which is colloquially known as RJ-45. 
+
+#### Fibre
+Fibre juxtaposed to twisted pair uses light as the means of transmission. This makes it reachable for much longer distances or for places with lots of EMI.
+Glass fiber has the glass core, cladding (what makes light reflect), a buffer and the insulating jacket.
+![[Fibre Optic cable.jpg]]
+
+Fiber has 2 measurements according to the core/cladding. Commonly 9/125 50/125 and 62.5/125 micrometers. Originally they would have one cable for sending one cable for receiving but nowadays they run duplex. 
+
+Multimode-fiber uses LEDs (MMF) whereas single-mode fiber uses lasers (SMF).
+MMF wavelengths are either 850nm or 1300nm
+SMF wavelengths are 1310nm ir 1550nm
+
+MMF has modal distortion where signals sent at the same time don't arrive at the same time. 
+
+The four main connectors are ST SC LC MT->RJ
+
+![[Fiber Connectors.webp]]
+
+LC and MTRJ are duplex whereas SC and ST are single.
+Snap & twist= ST
+Snap & Click = SC
+lil connector =LC
+
+Fire ratings on cables are plenum vs PVC (polyvinyl chloride)
+Plenum=fire resistance but very costly. Buildings require plenum cabling
+PVC is not fire resistant but much cheaper.
+
+IEEE has a committee called 802 which defines frames, speeds, distances, and types of cabling.
+
+![[802 IEEE standards.jpg]]
+
+## Chapter 3
+The chain of ethernet development was:
+bus topology @ 3Mbps -> DIX Ethernet @ 10Mbps -> IEEE for additional standards.
+
+| Standard | Description                                  |
+| -------- | -------------------------------------------- |
+| 802.3i   | 10Mbps Ethernet using twisted pair           |
+| 802.3ab  | Gbps over twisted pair                       |
+| 802.3by  | 25Gbit over fiber                            |
+| 802.3cm  | 400Gbit over MMF                             |
+| 802.3cu  | 100Gbit-400Gbit over SMF using 100Gbit lanes |
+CSMA/CD is the process of finding out what goes where with collision detection.
+![[CSMACD.webp]]
+
+Thankfully frames prevent the monopolization of the bus and makes transmitting data more efficient.
+
+![[Ethernet Frame.jpg]]
+
+The preamble is a sequence of 0s and 1s in the form of 1010101 which gives a NIC time to recognize it is a frame. Then it has the destination IP and SRC address. The type differentiates between IPv4 and IPv6. The data is the payload of the frame which is padded to make the frame minimum of 64bytes long. 
+
+FCS contains a cyclical redundancy check and attaches the result at the end. This is meant to check the accuracy of the frame and verify if the frame has been tampered with or contains errors. 
+
+Initially the router just sent everything down every other channel but advanced switches can avoid things like this.
+
+### Ethernet Standards
+
+Num Base-XX
+Num-> Refers to the speed in  Mbps
+Base-> Refers to Baseband (cable carries 1 signal)
+XX-> Refers to the cable type. T being twisted pair
+
+#### 10Base-T
+Was the original ethernet signal. 10Mbps via connection to a hub. It used Cat3 UTP cable in doubles with an RJ-45 connector.
+It had 4 pairs of cable but only used 2 pairs for various reasons. 1&2 sent data whereas 3&6 receive data. That said, even with multiple pins they couldn't send and receive data at the same time.  
+
+NICs that can only do one task at once run what's known as half duplex whereas those that can send and receive data at once run full-duplex. 
+
+##### RJ45
+The RJ-45 is known as a crimp which is the process of adding the end onto the UTP wire.
+
+ ![[Pasted image 20251113161555.png]]
+The difference between 568A and 548b is GO, green is first for A and orange is first for B.
+
+##### 10BASE-FL
+10BASE-FL is the fiber based alternative to 10BASE-T. First, 10BASE-FL could go for over 2km which addresses the distance issue. The second strength is the resistance to EMI that twisted pair lacks. It uses 62.5/125um with ST-SC connectors. It also uses single band/half-duplex so it requires 2 fiber runs. 
+
+
+#### Standards Summary
+| Standard  | Speed  | Type     | Distance                | Node-Limit | Topology                  | Cable          |
+| --------- | ------ | -------- | ----------------------- | ---------- | ------------------------- | -------------- |
+| 10BASE-T  | 10Mbps | Baseband | 100m between hub n node | 1024 nodes | Phys-Star logic-Bus       | Cat-3          |
+| 10BASE-FL | 10Mbps | Baseband | 2km from node and hub   |            | Physical-Star Logical-bus | 62.5/125 ST-SC |
+|           |        |          |                         |            |                           |                |
+|           |        |          |                         |            |                           |                |
+|           |        |          |                         |            |                           |                |
 
 ## Relevant Commands
 ```
